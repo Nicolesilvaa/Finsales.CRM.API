@@ -20,10 +20,10 @@ public class ClienteController {
     }
 
     @PostMapping
-    public responseEntity<void>criarCliente(
+    public ResponseEntity<Void> criarCliente(
             @Valid @RequestBody CreateClienteRequest request
             ){
         clienteService.criarCliente(request);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+        return ResponseEntity.status(HttpStatus.CREATED).build(); //201
     }
 }
