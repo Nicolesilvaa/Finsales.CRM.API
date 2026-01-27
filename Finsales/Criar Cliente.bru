@@ -1,0 +1,27 @@
+meta {
+  name: Criar Cliente
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:8081/clientes
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "nome": "Nicole Silva",
+    "documento": "12345678900",
+    "email": "nicole@email.com",
+    "telefone": "71999999999",
+    "tipoCliente": "PF"
+  }
+  
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
