@@ -17,7 +17,7 @@ public class ClienteService {
 
     public void criarCliente(CreateClienteRequest request){
 
-        boolean clienteExiste = clienteRepository.existByDocumento(request.getDocumento());
+        boolean clienteExiste = clienteRepository.existsByDocumento(request.getDocumento());
 
         if(clienteExiste){
             throw new IllegalArgumentException("Cliente já cadastrado com este documento");
