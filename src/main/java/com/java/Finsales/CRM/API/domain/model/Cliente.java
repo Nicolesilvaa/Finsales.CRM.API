@@ -3,11 +3,15 @@ package com.java.Finsales.CRM.API.domain.model;
 import com.java.Finsales.CRM.API.domain.utils.EstadoCliente;
 import com.java.Finsales.CRM.API.domain.utils.TipoCliente;
 import jakarta.persistence.*;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
 @Entity
+@Setter
+@Getter
 @NoArgsConstructor
 @Table(name = "clientes")
 public class Cliente {
