@@ -2,23 +2,47 @@ package com.java.Finsales.CRM.API.domain.model;
 
 import com.java.Finsales.CRM.API.domain.utils.EstadoCliente;
 import com.java.Finsales.CRM.API.domain.utils.TipoCliente;
+import jakarta.persistence.*;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
+@Entity
+@NoArgsConstructor
+@Table(name = "clientes")
 public class Cliente {
 
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String nome;
+
+    @Column(nullable = false, unique = true)
     private String documento;
+
+    @Column(nullable = false)
     private String email;
+
+    @Column(nullable = false)
     private String telefone;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private TipoCliente tipoCliente;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private EstadoCliente status;
 
+    @Column(nullable = false)
     private LocalDateTime dataCriacao;
+
+    @Column(nullable = false)
     private LocalDateTime ultimaAtualizacao;
+
 
     public Cliente(
             String nome,
