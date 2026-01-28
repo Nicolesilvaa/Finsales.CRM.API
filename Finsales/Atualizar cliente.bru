@@ -1,0 +1,28 @@
+meta {
+  name: Atualizar cliente
+  type: http
+  seq: 4
+}
+
+put {
+  url: http://localhost:8081/clientes/2
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "nome": "Cliente Inativo",
+    "documento": "22222222222",
+    "email": "inativo@email.com",
+    "telefone": "719222222",
+    "status": "INATIVO"
+  }
+  
+  
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

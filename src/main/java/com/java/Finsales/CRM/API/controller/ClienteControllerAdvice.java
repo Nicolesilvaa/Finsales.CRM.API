@@ -1,6 +1,7 @@
 package com.java.Finsales.CRM.API.controller;
 
 import com.java.Finsales.CRM.API.domain.utils.exceptions.ClienteExistenteException;
+import com.java.Finsales.CRM.API.domain.utils.exceptions.ClienteInativoException;
 import com.java.Finsales.CRM.API.domain.utils.exceptions.ClienteNaoEncontradoException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +20,11 @@ public class ClienteControllerAdvice {
     @ExceptionHandler(ClienteNaoEncontradoException.class)
     public ResponseEntity<String> clienteNaoEncontrado(ClienteNaoEncontradoException ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+    }
+
+    @ExceptionHandler(ClienteInativoException.class)
+    public ResponseEntity<String> clienteInativo(ClienteInativoException ex) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
     }
 
     @ExceptionHandler(IllegalArgumentException.class)
