@@ -1,7 +1,7 @@
 package com.java.Finsales.CRM.API.domain.model;
 
-import com.java.Finsales.CRM.API.domain.utils.EstadoCliente;
-import com.java.Finsales.CRM.API.domain.utils.TipoCliente;
+import com.java.Finsales.CRM.API.domain.utils.enums.EstadoCliente;
+import com.java.Finsales.CRM.API.domain.utils.enums.TipoCliente;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
