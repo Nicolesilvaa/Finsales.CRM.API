@@ -1,6 +1,8 @@
 package com.java.Finsales.CRM.API.service;
 
 import com.java.Finsales.CRM.API.domain.model.Cliente;
+import com.java.Finsales.CRM.API.domain.utils.exceptions.ClienteExistenteException;
+import com.java.Finsales.CRM.API.domain.utils.exceptions.ClienteNaoEncontradoException;
 import com.java.Finsales.CRM.API.dto.request.CreateClienteRequest;
 import com.java.Finsales.CRM.API.domain.repository.ClienteRepository;
 import com.java.Finsales.CRM.API.dto.request.UpdateClienteRequest;
@@ -9,7 +11,6 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 @Service
 public class ClienteService {
@@ -24,7 +25,7 @@ public class ClienteService {
         boolean clienteExiste = clienteRepository.existsByDocumento(request.getDocumento());
 
         if(clienteExiste){
-            throw new IllegalArgumentException("Cliente já cadastrado com este documento");
+            throw new ClienteExistenteException("O cliente ja existe no sistema");
         }
 
         Cliente cliente = new Cliente(
@@ -44,9 +45,7 @@ public class ClienteService {
 
     public Cliente atualizar(Long id, UpdateClienteRequest request){
 
-        Cliente cliente = clienteRepository
-                .findById(id)
-                .orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
+        Cliente cliente = clienteRepository.findById(id).orElseThrow(() -> new ClienteNaoEncontradoException("Cliente não encontrado"));
 
         cliente.setNome(request.getNome());
         cliente.setEmail(request.getEmail());
