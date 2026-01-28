@@ -1,7 +1,6 @@
 package com.java.Finsales.CRM.API.dto.request;
 
-import com.java.Finsales.CRM.API.domain.utils.EstadoCliente;
-import com.java.Finsales.CRM.API.domain.utils.TipoCliente;
+import com.java.Finsales.CRM.API.domain.utils.enums.EstadoCliente;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
