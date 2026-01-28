@@ -1,7 +1,9 @@
 package com.java.Finsales.CRM.API.service;
 
 import com.java.Finsales.CRM.API.domain.model.Cliente;
+import com.java.Finsales.CRM.API.domain.utils.enums.EstadoCliente;
 import com.java.Finsales.CRM.API.domain.utils.exceptions.ClienteExistenteException;
+import com.java.Finsales.CRM.API.domain.utils.exceptions.ClienteInativoException;
 import com.java.Finsales.CRM.API.domain.utils.exceptions.ClienteNaoEncontradoException;
 import com.java.Finsales.CRM.API.dto.request.CreateClienteRequest;
 import com.java.Finsales.CRM.API.domain.repository.ClienteRepository;
@@ -46,6 +48,10 @@ public class ClienteService {
     public Cliente atualizar(Long id, UpdateClienteRequest request){
 
         Cliente cliente = clienteRepository.findById(id).orElseThrow(() -> new ClienteNaoEncontradoException("Cliente não encontrado"));
+
+        if (cliente.getStatus() == EstadoCliente.INATIVO) {
+            throw new ClienteInativoException("Cliente inativo");
+        }
 
         cliente.setNome(request.getNome());
         cliente.setEmail(request.getEmail());
