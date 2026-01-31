@@ -63,4 +63,9 @@ public class ClienteService {
 
     }
 
+    public Cliente buscarById(Long id){
+        return clienteRepository.findById(id).orElseThrow(() -> new ClienteNaoEncontradoException("Cliente não encontrado"));
+
+    }
+
 }

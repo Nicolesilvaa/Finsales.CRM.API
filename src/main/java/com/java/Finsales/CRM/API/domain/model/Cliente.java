@@ -47,7 +47,6 @@ public class Cliente {
     @Column(nullable = false)
     private LocalDateTime ultimaAtualizacao;
 
-
     public Cliente(
             String nome,
             String documento,
