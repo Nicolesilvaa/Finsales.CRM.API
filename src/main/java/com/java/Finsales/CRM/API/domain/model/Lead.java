@@ -2,6 +2,7 @@ package com.java.Finsales.CRM.API.domain.model;
 
 
 import com.java.Finsales.CRM.API.domain.utils.enums.OrigemLead;
+import com.java.Finsales.CRM.API.domain.utils.enums.StatusLead;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,24 +18,45 @@ import java.time.LocalDateTime;
 public class Lead {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false)
     private String nome;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(nullable = false)
+    @Column()
     private String telefone;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private OrigemLead tipoCliente;
+    private OrigemLead origem;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
+    private StatusLead status;
+
+    @Column(nullable = false, updatable = false)
     private LocalDateTime dataCriacao;
 
     @Column(nullable = false)
     private LocalDateTime ultimaAtualizacao;
+
+    public Lead(Long id, String nome, String email, String telefone, OrigemLead origem, StatusLead status, LocalDateTime dataCriacao, LocalDateTime ultimaAtualizacao) {
+        this.id = id;
+        this.nome = nome;
+        this.email = email;
+        this.telefone = telefone;
+        this.origem = origem;
+        this.status = status;
+        this.dataCriacao = dataCriacao;
+        this.ultimaAtualizacao = ultimaAtualizacao;
+    }
+
+    public void atualizarStatus(StatusLead novoStatus) {
+        this.status = novoStatus;
+        this.ultimaAtualizacao = LocalDateTime.now();
+    }
 
 }
