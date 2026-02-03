@@ -62,7 +62,6 @@ public class ClienteService {
         return clienteRepository.save(cliente);
 
     }
-
     public Cliente buscarById(Long id){
         return clienteRepository.findById(id).orElseThrow(() -> new ClienteNaoEncontradoException("Cliente não encontrado"));
 
