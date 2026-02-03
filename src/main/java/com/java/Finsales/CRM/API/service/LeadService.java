@@ -3,6 +3,7 @@ package com.java.Finsales.CRM.API.service;
 import com.java.Finsales.CRM.API.domain.model.Lead;
 import com.java.Finsales.CRM.API.domain.repository.LeadRepository;
 import com.java.Finsales.CRM.API.domain.utils.enums.StatusLead;
+import com.java.Finsales.CRM.API.domain.utils.exceptions.LeadNaoEncontradoException;
 import com.java.Finsales.CRM.API.dto.request.CreateLeadRequest;
 import org.springframework.stereotype.Service;
 
@@ -49,10 +50,9 @@ public class LeadService {
         return leadRepository.save(lead);
     }
 
-
     public Lead buscarPorId(Long id) {
         return leadRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Lead não encontrado"));
+                .orElseThrow(() -> new LeadNaoEncontradoException("Lead não encontrado"));
     }
 
 
