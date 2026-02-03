@@ -49,9 +49,9 @@ public class Lead {
         this.email = email;
         this.telefone = telefone;
         this.origem = origem;
-        this.status = status;
-        this.dataCriacao = dataCriacao;
-        this.ultimaAtualizacao = ultimaAtualizacao;
+        this.status = StatusLead.NOVO;
+        this.dataCriacao = LocalDateTime.now();
+        this.ultimaAtualizacao = LocalDateTime.now();
     }
 
     public void atualizarStatus(StatusLead novoStatus) {
