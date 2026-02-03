@@ -55,5 +55,4 @@ public class LeadService {
                 .orElseThrow(() -> new LeadNaoEncontradoException("Lead não encontrado"));
     }
 
-
 }
