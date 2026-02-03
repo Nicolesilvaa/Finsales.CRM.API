@@ -2,8 +2,12 @@ package com.java.Finsales.CRM.API.service;
 
 import com.java.Finsales.CRM.API.domain.model.Lead;
 import com.java.Finsales.CRM.API.domain.repository.LeadRepository;
+import com.java.Finsales.CRM.API.domain.utils.enums.StatusLead;
 import com.java.Finsales.CRM.API.dto.request.CreateLeadRequest;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class LeadService {
@@ -28,7 +32,28 @@ public class LeadService {
                 request.getOrigemLead()
         );
 
-        return  leadRepository.findAll();
-
+        return leadRepository.save(lead);
     }
+
+    public List<Lead> listarTodos() {
+        return leadRepository.findAll();
+    }
+
+    public Lead atualizarStatus(Long id, StatusLead novoStatus) {
+
+        Lead lead = buscarPorId(id);
+
+        lead.setStatus(novoStatus);
+        lead.setUltimaAtualizacao(LocalDateTime.now());
+
+        return leadRepository.save(lead);
+    }
+
+
+    public Lead buscarPorId(Long id) {
+        return leadRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Lead não encontrado"));
+    }
+
+
 }
