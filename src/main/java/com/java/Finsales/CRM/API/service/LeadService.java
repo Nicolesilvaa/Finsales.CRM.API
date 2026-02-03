@@ -27,6 +27,7 @@ public class LeadService {
                 request.getTelefone(),
                 request.getOrigemLead()
         );
+
         return  leadRepository.findAll();
 
     }

@@ -43,7 +43,7 @@ public class Lead {
     @Column(nullable = false)
     private LocalDateTime ultimaAtualizacao;
 
-    public Lead(Long id, String nome, String email, String telefone, OrigemLead origem, StatusLead status, LocalDateTime dataCriacao, LocalDateTime ultimaAtualizacao) {
+    public Lead(Long id, String nome, String email, String telefone, OrigemLead origem) {
         this.id = id;
         this.nome = nome;
         this.email = email;
