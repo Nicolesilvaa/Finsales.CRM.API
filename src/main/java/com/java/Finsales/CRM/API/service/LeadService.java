@@ -3,6 +3,7 @@ package com.java.Finsales.CRM.API.service;
 import com.java.Finsales.CRM.API.domain.model.Lead;
 import com.java.Finsales.CRM.API.domain.repository.LeadRepository;
 import com.java.Finsales.CRM.API.domain.utils.enums.StatusLead;
+import com.java.Finsales.CRM.API.domain.utils.exceptions.LeadDescartadoException;
 import com.java.Finsales.CRM.API.domain.utils.exceptions.LeadNaoEncontradoException;
 import com.java.Finsales.CRM.API.dto.request.CreateLeadRequest;
 import org.springframework.stereotype.Service;
@@ -44,7 +45,25 @@ public class LeadService {
 
         Lead lead = buscarPorId(id);
 
+        if (lead.getStatus() == StatusLead.DESCARTADO ) {
+            throw new LeadDescartadoException("Lead descartado");
+        }
+
         lead.setStatus(novoStatus);
+        lead.setUltimaAtualizacao(LocalDateTime.now());
+
+        return leadRepository.save(lead);
+    }
+
+    public Lead atualizarEmail (Long id, String novoEmail) {
+
+        Lead lead = buscarPorId(id);
+
+        if (lead.getStatus() == StatusLead.DESCARTADO ) {
+            throw new LeadDescartadoException("Lead descartado");
+        }
+
+        lead.setEmail(novoEmail);
         lead.setUltimaAtualizacao(LocalDateTime.now());
 
         return leadRepository.save(lead);

@@ -1,0 +1,29 @@
+meta {
+  name: Criar lead
+  type: http
+  seq: 5
+}
+
+post {
+  url: http://localhost:8081/leads
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "nome": "Maria Silva",
+    "email": "maria.silva@email.com",
+    "telefone": "11999999999",
+    "origemLead": "SITE"
+  }
+}
+
+settings {
+  encodeUrl: false
+  timeout: 0
+}

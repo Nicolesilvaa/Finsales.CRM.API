@@ -2,6 +2,7 @@ package com.java.Finsales.CRM.API.controller;
 
 import com.java.Finsales.CRM.API.domain.model.Lead;
 import com.java.Finsales.CRM.API.dto.request.CreateLeadRequest;
+import com.java.Finsales.CRM.API.dto.request.UpdateEmailLeadRequest;
 import com.java.Finsales.CRM.API.dto.request.UpdateStatusLeadRequest;
 import com.java.Finsales.CRM.API.service.LeadService;
 import jakarta.validation.Valid;
@@ -10,8 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
-import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 
 @RestController
@@ -43,6 +42,12 @@ public class LeadsController {
     @PatchMapping("/{id}/status")
     public  ResponseEntity<Void> atualizarStatus(@PathVariable Long id, @Valid @RequestBody UpdateStatusLeadRequest request){
         leadService.atualizarStatus( id, request.getStatus());
+        return ResponseEntity.noContent().build();
+    }
+
+    @PatchMapping("/{id}/email")
+    public  ResponseEntity<Void> atualizarEmail(@PathVariable Long id, @Valid @RequestBody UpdateEmailLeadRequest request){
+        leadService.atualizarEmail(id, request.getEmail());
         return ResponseEntity.noContent().build();
     }
 
