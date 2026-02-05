@@ -1,0 +1,29 @@
+meta {
+  name: Atualizar email lead
+  type: http
+  seq: 10
+}
+
+patch {
+  url: http://localhost:8081/leads/1/email
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  
+  {
+    "email": "nicolelinda@gmail.com"
+  }
+  
+  
+}
+
+settings {
+  encodeUrl: false
+  timeout: 0
+}
