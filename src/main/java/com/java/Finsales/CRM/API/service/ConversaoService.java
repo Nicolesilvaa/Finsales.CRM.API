@@ -23,7 +23,7 @@ public class ConversaoService {
         this.clienteRepository = clienteRepository;
     }
 
-    public Cliente converterLead(Long leadId){
+    public Cliente converterLead(Long leadId,String documento){
 
         Lead lead = leadRepository.findById(leadId)
                 .orElseThrow(() -> new LeadNaoEncontradoException("Lead não encontrado"));
@@ -36,6 +36,7 @@ public class ConversaoService {
         novoCliente.setNome(lead.getNome());
         novoCliente.setEmail(lead.getEmail());
         novoCliente.setTelefone(lead.getTelefone());
+        novoCliente.setDocumento(documento);
         novoCliente.setDataCriacao(LocalDateTime.now());
         novoCliente.setUltimaAtualizacao(LocalDateTime.now());
 

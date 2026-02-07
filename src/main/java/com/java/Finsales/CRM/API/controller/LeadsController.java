@@ -1,6 +1,7 @@
 package com.java.Finsales.CRM.API.controller;
 
 import com.java.Finsales.CRM.API.domain.model.Lead;
+import com.java.Finsales.CRM.API.dto.request.ConverterLeadRequest;
 import com.java.Finsales.CRM.API.dto.request.CreateLeadRequest;
 import com.java.Finsales.CRM.API.dto.request.UpdateEmailLeadRequest;
 import com.java.Finsales.CRM.API.dto.request.UpdateStatusLeadRequest;
@@ -55,9 +56,13 @@ public class LeadsController {
     }
 
     @PostMapping("/{id}/converter")
-    public ResponseEntity<Void> converterLeadEmCliente(@PathVariable Long id) {
-        conversaoService.converterLead(id);
+    public ResponseEntity<Void> converterLeadEmCliente(
+            @PathVariable Long id,
+            @Valid @RequestBody ConverterLeadRequest request
+    ) {
+        conversaoService.converterLead(id, request.getDocumento());
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
+
 
 }
