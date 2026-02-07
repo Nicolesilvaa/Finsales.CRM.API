@@ -38,6 +38,7 @@ public class LeadService {
     }
 
     public List<Lead> listarTodos() {
+
         return leadRepository.findAll();
     }
 
@@ -45,7 +46,7 @@ public class LeadService {
 
         Lead lead = buscarPorId(id);
 
-        if (lead.getStatus() == StatusLead.DESCARTADO ) {
+        if (lead.getStatus() == StatusLead.DESCARTADO  || lead.getStatus() == StatusLead.CONVERTIDO ) {
             throw new LeadDescartadoException("Lead descartado");
         }
 
@@ -59,7 +60,7 @@ public class LeadService {
 
         Lead lead = buscarPorId(id);
 
-        if (lead.getStatus() == StatusLead.DESCARTADO ) {
+        if (lead.getStatus() == StatusLead.DESCARTADO || lead.getStatus() == StatusLead.CONVERTIDO) {
             throw new LeadDescartadoException("Lead descartado");
         }
 
