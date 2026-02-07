@@ -4,6 +4,7 @@ import com.java.Finsales.CRM.API.domain.model.Lead;
 import com.java.Finsales.CRM.API.dto.request.CreateLeadRequest;
 import com.java.Finsales.CRM.API.dto.request.UpdateEmailLeadRequest;
 import com.java.Finsales.CRM.API.dto.request.UpdateStatusLeadRequest;
+import com.java.Finsales.CRM.API.service.ConversaoService;
 import com.java.Finsales.CRM.API.service.LeadService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -18,9 +19,11 @@ import java.util.List;
 public class LeadsController {
 
     private final LeadService leadService;
+    private final ConversaoService conversaoService;
 
-    public LeadsController(LeadService leadService) {
+    public LeadsController(LeadService leadService, ConversaoService conversaoService) {
         this.leadService = leadService;
+        this.conversaoService = conversaoService;
     }
 
     @PostMapping
@@ -49,6 +52,12 @@ public class LeadsController {
     public  ResponseEntity<Void> atualizarEmail(@PathVariable Long id, @Valid @RequestBody UpdateEmailLeadRequest request){
         leadService.atualizarEmail(id, request.getEmail());
         return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping("/{id}/converter")
+    public ResponseEntity<Void> converterLeadEmCliente(@PathVariable Long id) {
+        conversaoService.converterLead(id);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
 }
