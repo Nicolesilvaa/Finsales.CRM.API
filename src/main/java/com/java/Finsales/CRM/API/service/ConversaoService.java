@@ -37,6 +37,7 @@ public class ConversaoService {
         novoCliente.setEmail(lead.getEmail());
         novoCliente.setTelefone(lead.getTelefone());
         novoCliente.setDataCriacao(LocalDateTime.now());
+        novoCliente.setUltimaAtualizacao(LocalDateTime.now());
 
         Cliente clienteSalvo = clienteRepository.save(novoCliente);
 
