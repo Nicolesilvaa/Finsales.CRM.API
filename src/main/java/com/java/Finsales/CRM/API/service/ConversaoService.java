@@ -5,6 +5,7 @@ import com.java.Finsales.CRM.API.domain.model.Lead;
 import com.java.Finsales.CRM.API.domain.repository.ClienteRepository;
 import com.java.Finsales.CRM.API.domain.repository.LeadRepository;
 import com.java.Finsales.CRM.API.domain.utils.enums.StatusLead;
+import com.java.Finsales.CRM.API.domain.utils.enums.TipoCliente;
 import com.java.Finsales.CRM.API.domain.utils.exceptions.ConversaoErrorException;
 import com.java.Finsales.CRM.API.domain.utils.exceptions.LeadNaoEncontradoException;
 import org.springframework.stereotype.Service;
@@ -32,13 +33,14 @@ public class ConversaoService {
             throw  new ConversaoErrorException(  "O lead não pode ser convertido pois seu status atual é " + lead.getStatus());
         }
 
-        Cliente novoCliente = new Cliente();
-        novoCliente.setNome(lead.getNome());
-        novoCliente.setEmail(lead.getEmail());
-        novoCliente.setTelefone(lead.getTelefone());
-        novoCliente.setDocumento(documento);
-        novoCliente.setDataCriacao(LocalDateTime.now());
-        novoCliente.setUltimaAtualizacao(LocalDateTime.now());
+        Cliente novoCliente = new Cliente(
+                lead.getNome(),
+                documento,
+                lead.getEmail(),
+                lead.getTelefone(),
+                TipoCliente.PF
+        );
+
 
         Cliente clienteSalvo = clienteRepository.save(novoCliente);
 
