@@ -1,7 +1,8 @@
 package com.java.Finsales.CRM.API.domain.model;
 
-import com.java.Finsales.CRM.API.domain.utils.enums.EstadoCliente;
-import com.java.Finsales.CRM.API.domain.utils.enums.TipoCliente;
+
+import com.java.Finsales.CRM.API.domain.utils.enums.OrigemLead;
+import com.java.Finsales.CRM.API.domain.utils.enums.StatusLead;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,67 +14,47 @@ import java.time.LocalDateTime;
 @Setter
 @Getter
 @NoArgsConstructor
-@Table(name = "clientes")
-public class Cliente {
-
+@Table(name = "lead")
+public class Lead {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @Column(nullable = false)
     private String nome;
 
     @Column(nullable = false, unique = true)
-    private String documento;
-
-    @Column(nullable = false)
     private String email;
 
-    @Column(nullable = false)
+    @Column()
     private String telefone;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private TipoCliente tipoCliente;
+    private OrigemLead origem;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private EstadoCliente status;
+    private StatusLead status;
 
-    @Column(nullable = false)
+    @Column(nullable = false, updatable = false)
     private LocalDateTime dataCriacao;
 
     @Column(nullable = false)
     private LocalDateTime ultimaAtualizacao;
 
-    public Cliente(
-            String nome,
-            String documento,
-            String email,
-            String telefone,
-            TipoCliente tipoCliente
-    ) {
+    public Lead(String nome, String email, String telefone, OrigemLead origem) {
         this.nome = nome;
-        this.documento = documento;
         this.email = email;
         this.telefone = telefone;
-        this.tipoCliente = tipoCliente;
-
-        this.status = EstadoCliente.ATIVO;
+        this.origem = origem;
+        this.status = StatusLead.NOVO;
         this.dataCriacao = LocalDateTime.now();
         this.ultimaAtualizacao = LocalDateTime.now();
     }
 
-
-    public void atualizarContato(String email, String telefone) {
-        this.email = email;
-        this.telefone = telefone;
-        this.ultimaAtualizacao = LocalDateTime.now();
-    }
-
-    public void inativar() {
-        this.status = EstadoCliente.INATIVO;
+    public void atualizarStatus(StatusLead novoStatus) {
+        this.status = novoStatus;
         this.ultimaAtualizacao = LocalDateTime.now();
     }
 
