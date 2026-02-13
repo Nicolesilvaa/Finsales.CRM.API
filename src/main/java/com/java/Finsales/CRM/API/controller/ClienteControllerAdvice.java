@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class ClienteControllerAdvice {
 
-    @ExceptionHandler(ProdutoNaoEnontradoException.class)
-    public ResponseEntity<String> produtoNaoEncontrado(ProdutoNaoEnontradoException ex) {
+    @ExceptionHandler(ProdutoNaoEncontradoException.class)
+    public ResponseEntity<String> produtoNaoEncontrado(ProdutoNaoEncontradoException ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
     }
     @ExceptionHandler(ConversaoErrorException.class)

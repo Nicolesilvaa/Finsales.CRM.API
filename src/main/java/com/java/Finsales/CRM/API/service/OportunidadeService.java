@@ -9,6 +9,7 @@ import com.java.Finsales.CRM.API.domain.repository.ProdutoRepository;
 import com.java.Finsales.CRM.API.domain.utils.enums.EstadoCliente;
 import com.java.Finsales.CRM.API.domain.utils.exceptions.ClienteInativoException;
 import com.java.Finsales.CRM.API.domain.utils.exceptions.ClienteNaoEncontradoException;
+import com.java.Finsales.CRM.API.domain.utils.exceptions.ProdutoNaoEncontradoException;
 import org.springframework.stereotype.Service;
 
 @Service
