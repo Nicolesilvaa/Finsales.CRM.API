@@ -28,9 +28,9 @@ public class LeadsController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> criarLead(@Valid @RequestBody CreateLeadRequest request){
-        leadService.criarLead(request);
-        return ResponseEntity.status(HttpStatus.CREATED).build(); //201
+    public ResponseEntity<Lead> criarLead(@Valid @RequestBody CreateLeadRequest request){
+        Lead leadCriado = leadService.criarLead(request);
+        return ResponseEntity.status(HttpStatus.CREATED).body(leadCriado);
     }
 
     @GetMapping()

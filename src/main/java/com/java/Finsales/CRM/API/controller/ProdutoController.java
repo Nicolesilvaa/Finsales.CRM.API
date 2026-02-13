@@ -22,9 +22,10 @@ public class ProdutoController {
 
     @PostMapping
     public ResponseEntity<Produto> criarProduto(@Valid @RequestBody CreateProdutoRequest request){
-        produtoService.criarProduto(request);
-        return  ResponseEntity.status(HttpStatus.CREATED).build();
+        Produto produtoCriado = produtoService.criarProduto(request);
+        return ResponseEntity.status(HttpStatus.CREATED).body(produtoCriado);
     }
+
 
     @GetMapping
     public ResponseEntity<List<Produto>> listarProdutos() {
