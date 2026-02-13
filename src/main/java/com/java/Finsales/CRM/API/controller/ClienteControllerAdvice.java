@@ -12,7 +12,10 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class ClienteControllerAdvice {
 
-
+    @ExceptionHandler(ProdutoNaoEnontradoException.class)
+    public ResponseEntity<String> produtoNaoEncontrado(ProdutoNaoEnontradoException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+    }
     @ExceptionHandler(ConversaoErrorException.class)
     public ResponseEntity<String> conversaoError(ConversaoErrorException ex) {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());

@@ -38,9 +38,6 @@ public class OportunidadeService {
         Produto produto = produtoRepository.findById(produtoId)
                 .orElseThrow(() -> new ProdutoNaoEncontradoException("Produto não encontrado"));
 
-        if (produto.getStatus() != StatusProduto.ATIVO) {
-            throw new ProdutoInativoException("Produto não está ativo");
-        }
 
         Oportunidade oportunidade = new Oportunidade(cliente, produto);
 
