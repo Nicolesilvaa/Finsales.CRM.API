@@ -1,11 +1,11 @@
 meta {
-  name: Atualizar email lead
+  name: Converter lead em cliente
   type: http
-  seq: 10
+  seq: 3
 }
 
-patch {
-  url: http://localhost:8081/leads/1/email
+post {
+  url: http://localhost:8081/leads/1/converter
   body: json
   auth: inherit
 }
@@ -15,12 +15,9 @@ headers {
 }
 
 body:json {
-  
   {
-    "email": "nicolelinda@gmail.com"
+    "documento": "12345678900"
   }
-  
-  
 }
 
 settings {

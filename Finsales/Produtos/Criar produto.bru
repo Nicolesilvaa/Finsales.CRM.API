@@ -1,0 +1,24 @@
+meta {
+  name: Criar produto
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:8081/produtos
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "nome": "CRM Enterprise",
+    "descricao": "Plano completo"
+  }
+  
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
