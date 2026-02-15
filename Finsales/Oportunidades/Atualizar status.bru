@@ -1,0 +1,27 @@
+meta {
+  name: Atualizar status
+  type: http
+  seq: 4
+}
+
+patch {
+  url: http://localhost:8081/oportunidades/1/status
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "status": "GANHA"
+  }
+  
+  
+  
+  
+  
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

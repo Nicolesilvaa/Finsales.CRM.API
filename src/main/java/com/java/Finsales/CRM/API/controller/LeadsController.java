@@ -1,10 +1,10 @@
 package com.java.Finsales.CRM.API.controller;
 
 import com.java.Finsales.CRM.API.domain.model.Lead;
-import com.java.Finsales.CRM.API.dto.request.ConverterLeadRequest;
-import com.java.Finsales.CRM.API.dto.request.CreateLeadRequest;
-import com.java.Finsales.CRM.API.dto.request.UpdateEmailLeadRequest;
-import com.java.Finsales.CRM.API.dto.request.UpdateStatusLeadRequest;
+import com.java.Finsales.CRM.API.dto.request.Lead.ConverterLeadRequest;
+import com.java.Finsales.CRM.API.dto.request.Lead.CreateLeadRequest;
+import com.java.Finsales.CRM.API.dto.request.Lead.UpdateEmailLeadRequest;
+import com.java.Finsales.CRM.API.dto.request.Lead.UpdateStatusLeadRequest;
 import com.java.Finsales.CRM.API.service.ConversaoService;
 import com.java.Finsales.CRM.API.service.LeadService;
 import jakarta.validation.Valid;
@@ -28,9 +28,9 @@ public class LeadsController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> criarLead(@Valid @RequestBody CreateLeadRequest request){
-        leadService.criarLead(request);
-        return ResponseEntity.status(HttpStatus.CREATED).build(); //201
+    public ResponseEntity<Lead> criarLead(@Valid @RequestBody CreateLeadRequest request){
+        Lead leadCriado = leadService.criarLead(request);
+        return ResponseEntity.status(HttpStatus.CREATED).body(leadCriado);
     }
 
     @GetMapping()

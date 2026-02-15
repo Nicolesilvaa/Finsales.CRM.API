@@ -1,0 +1,25 @@
+meta {
+  name: Criar oportunidades
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:8081/oportunidades
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "clienteId": 1,
+    "produtoId": 1
+  }
+  
+  
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

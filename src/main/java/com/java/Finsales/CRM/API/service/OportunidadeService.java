@@ -1,0 +1,75 @@
+package com.java.Finsales.CRM.API.service;
+
+import com.java.Finsales.CRM.API.domain.model.Cliente;
+import com.java.Finsales.CRM.API.domain.model.Oportunidade;
+import com.java.Finsales.CRM.API.domain.model.Produto;
+import com.java.Finsales.CRM.API.domain.repository.ClienteRepository;
+import com.java.Finsales.CRM.API.domain.repository.OportunidadeRepository;
+import com.java.Finsales.CRM.API.domain.repository.ProdutoRepository;
+import com.java.Finsales.CRM.API.domain.utils.enums.EstadoCliente;
+import com.java.Finsales.CRM.API.domain.utils.enums.StatusOportunidade;
+import com.java.Finsales.CRM.API.domain.utils.exceptions.Cliente.ClienteInativoException;
+import com.java.Finsales.CRM.API.domain.utils.exceptions.Cliente.ClienteNaoEncontradoException;
+import com.java.Finsales.CRM.API.domain.utils.exceptions.Oportunidade.OportunidadeNaoEncontradaException;
+import com.java.Finsales.CRM.API.domain.utils.exceptions.Produto.ProdutoNaoEncontradoException;
+import com.java.Finsales.CRM.API.dto.request.Oportunidade.UpdateStatusOportunidadeRequest;
+import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
+import java.util.List;
+
+@Service
+public class OportunidadeService {
+
+    private final OportunidadeRepository oportunidadeRepository;
+    private final ClienteRepository clienteRepository;
+    private final ProdutoRepository produtoRepository;
+
+
+    public OportunidadeService(
+            OportunidadeRepository oportunidadeRepository, ClienteRepository clienteRepository, ProdutoRepository produtoRepository) {
+        this.oportunidadeRepository = oportunidadeRepository;
+        this.clienteRepository = clienteRepository;
+        this.produtoRepository = produtoRepository;
+    }
+
+    public Oportunidade criarOportunidade(Long clienteId, Long produtoId) {
+
+        Cliente cliente = clienteRepository.findById(clienteId)
+                .orElseThrow(() -> new ClienteNaoEncontradoException("Cliente não encontrado"));
+
+        if (cliente.getStatus() != EstadoCliente.ATIVO) {
+            throw new ClienteInativoException("Cliente não está ativo");
+        }
+
+        Produto produto = produtoRepository.findById(produtoId)
+                .orElseThrow(() -> new ProdutoNaoEncontradoException("Produto não encontrado"));
+
+
+        Oportunidade oportunidade = new Oportunidade(cliente, produto);
+
+        return oportunidadeRepository.save(oportunidade);
+    }
+
+    public List<Oportunidade> listar(){ return oportunidadeRepository.findAll();}
+
+    public Oportunidade mudarStatusOportunidade(Long id, UpdateStatusOportunidadeRequest request){
+
+        Oportunidade oportunidade = oportunidadeRepository.findById(id)
+                .orElseThrow(() -> new OportunidadeNaoEncontradaException("Oportunidade inexistente"));
+
+        oportunidade.mudarStatus(request.getStatus());
+
+        return oportunidadeRepository.save(oportunidade);
+    }
+
+
+    public Oportunidade buscarById(Long id){
+        return oportunidadeRepository.findById(id).orElseThrow(() -> new OportunidadeNaoEncontradaException("Oportunidade não encontrada"));
+
+    }
+
+
+
+
+}

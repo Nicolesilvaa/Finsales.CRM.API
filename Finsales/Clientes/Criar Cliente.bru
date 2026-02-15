@@ -1,0 +1,28 @@
+meta {
+  name: Criar Cliente
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:8081/clientes
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "nome": "Maria",
+    "documento": "44445544",
+    "email": "contato@xpto.com",
+    "telefone": "814536233",
+    "tipoCliente": "PF"
+  }
+  
+  
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

@@ -3,9 +3,9 @@ package com.java.Finsales.CRM.API.service;
 import com.java.Finsales.CRM.API.domain.model.Lead;
 import com.java.Finsales.CRM.API.domain.repository.LeadRepository;
 import com.java.Finsales.CRM.API.domain.utils.enums.StatusLead;
-import com.java.Finsales.CRM.API.domain.utils.exceptions.LeadDescartadoException;
-import com.java.Finsales.CRM.API.domain.utils.exceptions.LeadNaoEncontradoException;
-import com.java.Finsales.CRM.API.dto.request.CreateLeadRequest;
+import com.java.Finsales.CRM.API.domain.utils.exceptions.Lead.LeadDescartadoException;
+import com.java.Finsales.CRM.API.domain.utils.exceptions.Lead.LeadNaoEncontradoException;
+import com.java.Finsales.CRM.API.dto.request.Lead.CreateLeadRequest;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;

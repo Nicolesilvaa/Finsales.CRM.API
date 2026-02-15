@@ -2,8 +2,8 @@ package com.java.Finsales.CRM.API.controller;
 
 
 import com.java.Finsales.CRM.API.domain.model.Cliente;
-import com.java.Finsales.CRM.API.dto.request.CreateClienteRequest;
-import com.java.Finsales.CRM.API.dto.request.UpdateClienteRequest;
+import com.java.Finsales.CRM.API.dto.request.Cliente.CreateClienteRequest;
+import com.java.Finsales.CRM.API.dto.request.Cliente.UpdateClienteRequest;
 import com.java.Finsales.CRM.API.service.ClienteService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -25,8 +25,8 @@ public class ClienteController {
 
     @PostMapping
     public ResponseEntity<Cliente> criarCliente(@Valid @RequestBody CreateClienteRequest request){
-        clienteService.criarCliente(request);
-        return ResponseEntity.status(HttpStatus.CREATED).build(); //201
+        Cliente clienteCriado = clienteService.criarCliente(request);
+        return ResponseEntity.status(HttpStatus.CREATED).body(clienteCriado);
     }
 
     @GetMapping
