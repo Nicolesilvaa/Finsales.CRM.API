@@ -1,4 +1,4 @@
-package com.java.Finsales.CRM.API.dto.request;
+package com.java.Finsales.CRM.API.dto.request.Lead;
 
 import com.java.Finsales.CRM.API.domain.utils.enums.StatusLead;
 import jakarta.validation.constraints.NotNull;

@@ -7,10 +7,12 @@ import com.java.Finsales.CRM.API.domain.repository.ClienteRepository;
 import com.java.Finsales.CRM.API.domain.repository.OportunidadeRepository;
 import com.java.Finsales.CRM.API.domain.repository.ProdutoRepository;
 import com.java.Finsales.CRM.API.domain.utils.enums.EstadoCliente;
-import com.java.Finsales.CRM.API.domain.utils.exceptions.ClienteInativoException;
-import com.java.Finsales.CRM.API.domain.utils.exceptions.ClienteNaoEncontradoException;
-import com.java.Finsales.CRM.API.domain.utils.exceptions.ProdutoNaoEncontradoException;
+import com.java.Finsales.CRM.API.domain.utils.exceptions.Cliente.ClienteInativoException;
+import com.java.Finsales.CRM.API.domain.utils.exceptions.Cliente.ClienteNaoEncontradoException;
+import com.java.Finsales.CRM.API.domain.utils.exceptions.Produto.ProdutoNaoEncontradoException;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class OportunidadeService {
@@ -44,4 +46,9 @@ public class OportunidadeService {
 
         return oportunidadeRepository.save(oportunidade);
     }
+
+    public List<Oportunidade> listar(){ return oportunidadeRepository.findAll();}
+
+    public Oportunidade atualizar
+
 }

@@ -1,7 +1,7 @@
 package com.java.Finsales.CRM.API.controller;
 
 import com.java.Finsales.CRM.API.domain.model.Produto;
-import com.java.Finsales.CRM.API.dto.request.CreateProdutoRequest;
+import com.java.Finsales.CRM.API.dto.request.Produto.CreateProdutoRequest;
 import com.java.Finsales.CRM.API.service.ProdutoService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;

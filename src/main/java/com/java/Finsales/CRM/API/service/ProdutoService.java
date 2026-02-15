@@ -1,11 +1,10 @@
 package com.java.Finsales.CRM.API.service;
 
-import com.java.Finsales.CRM.API.domain.model.Cliente;
 import com.java.Finsales.CRM.API.domain.model.Produto;
 import com.java.Finsales.CRM.API.domain.repository.ProdutoRepository;
-import com.java.Finsales.CRM.API.domain.utils.exceptions.ProdutoExistenteException;
-import com.java.Finsales.CRM.API.domain.utils.exceptions.ProdutoNaoEncontradoException;
-import com.java.Finsales.CRM.API.dto.request.CreateProdutoRequest;
+import com.java.Finsales.CRM.API.domain.utils.exceptions.Produto.ProdutoExistenteException;
+import com.java.Finsales.CRM.API.domain.utils.exceptions.Produto.ProdutoNaoEncontradoException;
+import com.java.Finsales.CRM.API.dto.request.Produto.CreateProdutoRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

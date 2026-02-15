@@ -6,8 +6,8 @@ import com.java.Finsales.CRM.API.domain.repository.ClienteRepository;
 import com.java.Finsales.CRM.API.domain.repository.LeadRepository;
 import com.java.Finsales.CRM.API.domain.utils.enums.StatusLead;
 import com.java.Finsales.CRM.API.domain.utils.enums.TipoCliente;
-import com.java.Finsales.CRM.API.domain.utils.exceptions.ConversaoErrorException;
-import com.java.Finsales.CRM.API.domain.utils.exceptions.LeadNaoEncontradoException;
+import com.java.Finsales.CRM.API.domain.utils.exceptions.Conversao.ConversaoErrorException;
+import com.java.Finsales.CRM.API.domain.utils.exceptions.Lead.LeadNaoEncontradoException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;

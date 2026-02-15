@@ -1,4 +1,4 @@
-package com.java.Finsales.CRM.API.dto.request;
+package com.java.Finsales.CRM.API.dto.request.Cliente;
 
 import com.java.Finsales.CRM.API.domain.utils.enums.TipoCliente;
 import lombok.Getter;

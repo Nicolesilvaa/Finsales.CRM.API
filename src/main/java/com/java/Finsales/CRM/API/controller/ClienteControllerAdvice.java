@@ -1,6 +1,12 @@
 package com.java.Finsales.CRM.API.controller;
 
-import com.java.Finsales.CRM.API.domain.utils.exceptions.*;
+import com.java.Finsales.CRM.API.domain.utils.exceptions.Cliente.ClienteExistenteException;
+import com.java.Finsales.CRM.API.domain.utils.exceptions.Cliente.ClienteInativoException;
+import com.java.Finsales.CRM.API.domain.utils.exceptions.Cliente.ClienteNaoEncontradoException;
+import com.java.Finsales.CRM.API.domain.utils.exceptions.Conversao.ConversaoErrorException;
+import com.java.Finsales.CRM.API.domain.utils.exceptions.Lead.LeadDescartadoException;
+import com.java.Finsales.CRM.API.domain.utils.exceptions.Lead.LeadNaoEncontradoException;
+import com.java.Finsales.CRM.API.domain.utils.exceptions.Produto.ProdutoNaoEncontradoException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;

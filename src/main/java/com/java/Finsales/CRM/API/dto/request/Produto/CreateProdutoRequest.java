@@ -1,4 +1,4 @@
-package com.java.Finsales.CRM.API.dto.request;
+package com.java.Finsales.CRM.API.dto.request.Produto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

@@ -1,6 +1,6 @@
-package com.java.Finsales.CRM.API.dto.request;
+package com.java.Finsales.CRM.API.dto.request.Lead;
 
-import com.java.Finsales.CRM.API.domain.utils.enums.EstadoCliente;
+import com.java.Finsales.CRM.API.domain.utils.enums.OrigemLead;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -12,8 +12,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class UpdateClienteRequest {
-
+public class CreateLeadRequest {
     @NotBlank
     @Size(min = 3, max = 100)
     private String nome;
@@ -26,5 +25,6 @@ public class UpdateClienteRequest {
     private String telefone;
 
     @NotNull
-    private EstadoCliente status;
+    private OrigemLead origemLead;
+
 }

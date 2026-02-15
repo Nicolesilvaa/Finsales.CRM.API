@@ -1,4 +1,4 @@
-package com.java.Finsales.CRM.API.dto.request;
+package com.java.Finsales.CRM.API.dto.request.Oportunidade;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;

@@ -2,12 +2,12 @@ package com.java.Finsales.CRM.API.service;
 
 import com.java.Finsales.CRM.API.domain.model.Cliente;
 import com.java.Finsales.CRM.API.domain.utils.enums.EstadoCliente;
-import com.java.Finsales.CRM.API.domain.utils.exceptions.ClienteExistenteException;
-import com.java.Finsales.CRM.API.domain.utils.exceptions.ClienteInativoException;
-import com.java.Finsales.CRM.API.domain.utils.exceptions.ClienteNaoEncontradoException;
-import com.java.Finsales.CRM.API.dto.request.CreateClienteRequest;
+import com.java.Finsales.CRM.API.domain.utils.exceptions.Cliente.ClienteExistenteException;
+import com.java.Finsales.CRM.API.domain.utils.exceptions.Cliente.ClienteInativoException;
+import com.java.Finsales.CRM.API.domain.utils.exceptions.Cliente.ClienteNaoEncontradoException;
+import com.java.Finsales.CRM.API.dto.request.Cliente.CreateClienteRequest;
 import com.java.Finsales.CRM.API.domain.repository.ClienteRepository;
-import com.java.Finsales.CRM.API.dto.request.UpdateClienteRequest;
+import com.java.Finsales.CRM.API.dto.request.Cliente.UpdateClienteRequest;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;

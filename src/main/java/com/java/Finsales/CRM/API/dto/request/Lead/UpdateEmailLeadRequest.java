@@ -1,4 +1,4 @@
-package com.java.Finsales.CRM.API.dto.request;
+package com.java.Finsales.CRM.API.dto.request.Lead;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

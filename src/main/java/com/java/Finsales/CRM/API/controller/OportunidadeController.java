@@ -1,7 +1,7 @@
 package com.java.Finsales.CRM.API.controller;
 
 import com.java.Finsales.CRM.API.domain.model.Oportunidade;
-import com.java.Finsales.CRM.API.dto.request.CreateOportunidadeRequest;
+import com.java.Finsales.CRM.API.dto.request.Oportunidade.CreateOportunidadeRequest;
 import com.java.Finsales.CRM.API.service.OportunidadeService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
