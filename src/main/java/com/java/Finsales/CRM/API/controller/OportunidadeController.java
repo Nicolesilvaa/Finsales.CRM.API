@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/oportunidades")
 public class OportunidadeController {
@@ -28,6 +30,16 @@ public class OportunidadeController {
         );
 
         return ResponseEntity.status(HttpStatus.CREATED).body(oportunidade);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Oportunidade>> listar() {
+        return ResponseEntity.ok(oportunidadeService.listar());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Oportunidade> buscarPorId(@PathVariable Long id) {
+        return ResponseEntity.ok(oportunidadeService.buscarById(id));
     }
 
     @PatchMapping("/{id}/status")
