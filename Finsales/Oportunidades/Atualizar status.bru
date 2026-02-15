@@ -1,20 +1,22 @@
 meta {
-  name: Criar oportunidades
+  name: Atualizar status
   type: http
-  seq: 1
+  seq: 4
 }
 
-post {
-  url: http://localhost:8081/oportunidades
+patch {
+  url: http://localhost:8081/oportunidades/1/status
   body: json
   auth: inherit
 }
 
 body:json {
   {
-    "clienteId": 1,
-    "produtoId": 1
+    "status": "GANHA"
   }
+  
+  
+  
   
   
 }
