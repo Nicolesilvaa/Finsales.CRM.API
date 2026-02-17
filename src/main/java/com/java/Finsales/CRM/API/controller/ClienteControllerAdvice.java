@@ -6,6 +6,8 @@ import com.java.Finsales.CRM.API.domain.utils.exceptions.Cliente.ClienteNaoEncon
 import com.java.Finsales.CRM.API.domain.utils.exceptions.Conversao.ConversaoErrorException;
 import com.java.Finsales.CRM.API.domain.utils.exceptions.Lead.LeadDescartadoException;
 import com.java.Finsales.CRM.API.domain.utils.exceptions.Lead.LeadNaoEncontradoException;
+import com.java.Finsales.CRM.API.domain.utils.exceptions.Oportunidade.OportunidadeNaoEncontradaException;
+import com.java.Finsales.CRM.API.domain.utils.exceptions.Produto.ProdutoExistenteException;
 import com.java.Finsales.CRM.API.domain.utils.exceptions.Produto.ProdutoNaoEncontradoException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +19,17 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
 public class ClienteControllerAdvice {
+
+
+    @ExceptionHandler(OportunidadeNaoEncontradaException.class)
+    public ResponseEntity<String> oportunidadeNaoEncontrado(OportunidadeNaoEncontradaException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+    }
+
+    @ExceptionHandler(ProdutoExistenteException.class)
+    public ResponseEntity<String> produtoExistente(ProdutoExistenteException ex) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
+    }
 
     @ExceptionHandler(ProdutoNaoEncontradoException.class)
     public ResponseEntity<String> produtoNaoEncontrado(ProdutoNaoEncontradoException ex) {
