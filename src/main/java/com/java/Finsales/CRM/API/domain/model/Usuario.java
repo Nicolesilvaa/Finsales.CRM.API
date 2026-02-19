@@ -67,7 +67,6 @@ public class Usuario {
         this.ultimaAtualizacao = LocalDateTime.now();
     }
 
-
     public void atualizarStatus(StatusUsuario novoStatus) {
         this.status = novoStatus;
     }
