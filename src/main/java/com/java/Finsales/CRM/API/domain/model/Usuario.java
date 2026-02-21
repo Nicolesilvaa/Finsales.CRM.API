@@ -46,12 +46,11 @@ public class Usuario {
     @Column(nullable = true)
     private LocalDateTime ultimoLogin;
 
-    public Usuario(Long id, String nome, String email, String senha, PerfilUsuario perfil) {
-        this.id = id;
+    public Usuario(String nome, String email, String senha) {
         this.nome = nome;
         this.email = email;
         this.senha = senha;
-        this.perfil = perfil;
+        this.perfil = PerfilUsuario.VENDEDOR;
         this.status = StatusUsuario.ATIVO;
     }
 
