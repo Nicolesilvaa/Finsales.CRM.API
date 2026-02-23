@@ -9,6 +9,8 @@ import com.java.Finsales.CRM.API.domain.utils.exceptions.Lead.LeadNaoEncontradoE
 import com.java.Finsales.CRM.API.domain.utils.exceptions.Oportunidade.OportunidadeNaoEncontradaException;
 import com.java.Finsales.CRM.API.domain.utils.exceptions.Produto.ProdutoExistenteException;
 import com.java.Finsales.CRM.API.domain.utils.exceptions.Produto.ProdutoNaoEncontradoException;
+import com.java.Finsales.CRM.API.domain.utils.exceptions.Usuarios.UsuarioExistenteException;
+import com.java.Finsales.CRM.API.domain.utils.exceptions.Usuarios.UsuarioNaoExistenteException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -18,8 +20,17 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 
 @ControllerAdvice
-public class ClienteControllerAdvice {
+public class GeneralControllerAdvice {
 
+    @ExceptionHandler(UsuarioNaoExistenteException.class)
+    public ResponseEntity<Object> usuarioNaoExistente(UsuarioNaoExistenteException ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+    }
+
+    @ExceptionHandler(UsuarioExistenteException.class)
+    public  ResponseEntity<String> usuarioExistente(UsuarioExistenteException ex){
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+    }
 
     @ExceptionHandler(OportunidadeNaoEncontradaException.class)
     public ResponseEntity<String> oportunidadeNaoEncontrado(OportunidadeNaoEncontradaException ex) {
