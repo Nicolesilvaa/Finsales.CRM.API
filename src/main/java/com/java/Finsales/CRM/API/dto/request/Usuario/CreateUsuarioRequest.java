@@ -18,9 +18,6 @@ public class CreateUsuarioRequest {
     private String nome;
 
     @NotBlank
-    private String documento;
-
-    @NotBlank
     @Email
     private String email;
 
