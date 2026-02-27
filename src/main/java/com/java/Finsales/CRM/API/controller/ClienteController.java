@@ -8,6 +8,7 @@ import com.java.Finsales.CRM.API.service.ClienteService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,17 +24,19 @@ public class ClienteController {
         this.clienteService = clienteService;
     }
 
-    @PostMapping
+    @PreAuthorize("hasAnyRole('ADMIN','VENDEDOR')")    @PostMapping
     public ResponseEntity<Cliente> criarCliente(@Valid @RequestBody CreateClienteRequest request){
         Cliente clienteCriado = clienteService.criarCliente(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(clienteCriado);
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN','VENDEDOR')")
     @GetMapping
     public ResponseEntity<List<Cliente>> listarClientes() {
         return ResponseEntity.ok(clienteService.listar());
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN','VENDEDOR')")
     @PutMapping("/{id}")
     public ResponseEntity<Cliente> atualizarClientes(@PathVariable Long id, @RequestBody UpdateClienteRequest request) {
         Cliente  atualizarCliente = clienteService.atualizar(id, request);
@@ -41,6 +44,7 @@ public class ClienteController {
 
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/{id}")
     public ResponseEntity<Cliente> buscarClientesById(@PathVariable Long id) {
         return ResponseEntity.ok(clienteService.buscarById(id));

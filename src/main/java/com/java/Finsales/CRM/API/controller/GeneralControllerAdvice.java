@@ -6,7 +6,13 @@ import com.java.Finsales.CRM.API.domain.utils.exceptions.Cliente.ClienteNaoEncon
 import com.java.Finsales.CRM.API.domain.utils.exceptions.Conversao.ConversaoErrorException;
 import com.java.Finsales.CRM.API.domain.utils.exceptions.Lead.LeadDescartadoException;
 import com.java.Finsales.CRM.API.domain.utils.exceptions.Lead.LeadNaoEncontradoException;
+import com.java.Finsales.CRM.API.domain.utils.exceptions.Oportunidade.OportunidadeNaoEncontradaException;
+import com.java.Finsales.CRM.API.domain.utils.exceptions.Produto.ProdutoExistenteException;
 import com.java.Finsales.CRM.API.domain.utils.exceptions.Produto.ProdutoNaoEncontradoException;
+import com.java.Finsales.CRM.API.domain.utils.exceptions.Usuarios.EmailInexistenteException;
+import com.java.Finsales.CRM.API.domain.utils.exceptions.Usuarios.UsuarioExistenteException;
+import com.java.Finsales.CRM.API.domain.utils.exceptions.Usuarios.UsuarioInativoException;
+import com.java.Finsales.CRM.API.domain.utils.exceptions.Usuarios.UsuarioNaoExistenteException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -16,7 +22,36 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 
 @ControllerAdvice
-public class ClienteControllerAdvice {
+public class GeneralControllerAdvice {
+
+    @ExceptionHandler(EmailInexistenteException.class)
+    public ResponseEntity<String> emailInexistente(EmailInexistenteException ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+    }
+
+    @ExceptionHandler(UsuarioInativoException.class)
+    public ResponseEntity<String> usuarioInativo(UsuarioInativoException ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+    }
+    @ExceptionHandler(UsuarioNaoExistenteException.class)
+    public ResponseEntity<Object> usuarioNaoExistente(UsuarioNaoExistenteException ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+    }
+
+    @ExceptionHandler(UsuarioExistenteException.class)
+    public  ResponseEntity<String> usuarioExistente(UsuarioExistenteException ex){
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+    }
+
+    @ExceptionHandler(OportunidadeNaoEncontradaException.class)
+    public ResponseEntity<String> oportunidadeNaoEncontrado(OportunidadeNaoEncontradaException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+    }
+
+    @ExceptionHandler(ProdutoExistenteException.class)
+    public ResponseEntity<String> produtoExistente(ProdutoExistenteException ex) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
+    }
 
     @ExceptionHandler(ProdutoNaoEncontradoException.class)
     public ResponseEntity<String> produtoNaoEncontrado(ProdutoNaoEncontradoException ex) {

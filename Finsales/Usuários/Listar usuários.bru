@@ -1,0 +1,24 @@
+meta {
+  name: Listar usuários
+  type: http
+  seq: 3
+}
+
+get {
+  url: http://localhost:8081/usuarios
+  body: json
+  auth: none
+}
+
+params:query {
+  ~Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2FvQGNybS5jb20iLCJpZCI6MSwicGVyZmlsIjoiVkVOREVET1IiLCJpYXQiOjE3NzIxNTc2MjQsImV4cCI6MTc3MjE2MTIyNH0.-o1S2B6XYiJQh0AHjCHHmDcJMbaBfYA84QAtQYXMJYw
+}
+
+headers {
+  Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2FvQGNybS5jb20iLCJpZCI6MSwicGVyZmlsIjoiVkVOREVET1IiLCJpYXQiOjE3NzIxNTc2MjQsImV4cCI6MTc3MjE2MTIyNH0.-o1S2B6XYiJQh0AHjCHHmDcJMbaBfYA84QAtQYXMJYw
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

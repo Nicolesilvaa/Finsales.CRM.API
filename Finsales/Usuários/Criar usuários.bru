@@ -1,0 +1,25 @@
+meta {
+  name: Criar usuários
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:8081/usuarios
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "nome": "João Silva",
+    "email": "joao@crm.com",
+    "senha": "123456",
+    "perfilUsuario": "ADMIN"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
