@@ -1,10 +1,10 @@
 meta {
-  name: Criar usuários
+  name: Atualizar usuários
   type: http
-  seq: 1
+  seq: 2
 }
 
-post {
+patch {
   url: http://localhost:8081/usuarios
   body: json
   auth: inherit
@@ -17,6 +17,7 @@ body:json {
     "senha": "123456",
     "perfilUsuario": "ADMIN"
   }
+  
 }
 
 settings {

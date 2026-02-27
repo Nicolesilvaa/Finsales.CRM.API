@@ -19,5 +19,10 @@ spring:
           enabled: true
           path: /h2-console
 
+
 server:
   port: 8081
+
+jwt:
+  secret: minha-chave-super-secreta-jwt-2026-finsales
+  expiration: 3600000

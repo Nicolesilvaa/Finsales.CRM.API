@@ -7,6 +7,7 @@ import com.java.Finsales.CRM.API.service.OportunidadeService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,6 +22,7 @@ public class OportunidadeController {
         this.oportunidadeService = oportunidadeService;
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN','VENDEDOR')")
     @PostMapping
     public ResponseEntity<Oportunidade> criarOportunidade(@Valid @RequestBody CreateOportunidadeRequest request){
 
@@ -32,16 +34,19 @@ public class OportunidadeController {
         return ResponseEntity.status(HttpStatus.CREATED).body(oportunidade);
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN','VENDEDOR')")
     @GetMapping
     public ResponseEntity<List<Oportunidade>> listar() {
         return ResponseEntity.ok(oportunidadeService.listar());
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN','VENDEDOR')")
     @GetMapping("/{id}")
     public ResponseEntity<Oportunidade> buscarPorId(@PathVariable Long id) {
         return ResponseEntity.ok(oportunidadeService.buscarById(id));
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN','VENDEDOR')")
     @PatchMapping("/{id}/status")
     public ResponseEntity<Void> atualizarStatus(@PathVariable Long id, @Valid @RequestBody UpdateStatusOportunidadeRequest request){
 
