@@ -2,6 +2,7 @@ package com.java.Finsales.CRM.API.service;
 
 import com.java.Finsales.CRM.API.domain.model.Usuario;
 import com.java.Finsales.CRM.API.domain.repository.UsuarioRepository;
+import com.java.Finsales.CRM.API.domain.utils.enums.PerfilUsuario;
 import com.java.Finsales.CRM.API.domain.utils.enums.StatusUsuario;
 import com.java.Finsales.CRM.API.domain.utils.exceptions.Usuarios.UsuarioExistenteException;
 import com.java.Finsales.CRM.API.domain.utils.exceptions.Usuarios.UsuarioNaoExistenteException;
@@ -23,23 +24,18 @@ public class UsuarioService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public Usuario criarUsuario(CreateUsuarioRequest request){
-        boolean usuarioExiste = usuarioRepository.existsByEmail(request.getEmail());
+    public Usuario criar(CreateUsuarioRequest request) {
 
-        if(usuarioExiste){
-            throw  new UsuarioExistenteException("O usuário já existe no sistema");
-        }
+        Usuario usuario = new Usuario();
 
-        String senhaCriptografada = passwordEncoder.encode(request.getSenha());
+        usuario.setNome(request.getNome());
+        usuario.setEmail(request.getEmail());
+        usuario.setSenha(passwordEncoder.encode(request.getSenha()));
 
-        Usuario usuario = new Usuario(
-                request.getNome(),
-                request.getEmail(),
-                senhaCriptografada
-        );
+        usuario.setPerfil(PerfilUsuario.VENDEDOR);
+        usuario.setStatus(StatusUsuario.ATIVO);
 
         return usuarioRepository.save(usuario);
-
     }
 
     public List<Usuario> listarUsuarios(){

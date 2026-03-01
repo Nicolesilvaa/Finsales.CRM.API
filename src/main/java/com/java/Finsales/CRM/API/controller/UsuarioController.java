@@ -23,10 +23,9 @@ public class UsuarioController {
     }
 
     @PostMapping
-    public ResponseEntity<Usuario> cadastrar(@Valid @RequestBody CreateUsuarioRequest request) {
-
-        Usuario usuario = usuarioService.criarUsuario(request);
-        return  ResponseEntity.status(HttpStatus.CREATED).body(usuario);
+    public ResponseEntity<Usuario> criar(@Valid @RequestBody CreateUsuarioRequest request) {
+        Usuario usuario = usuarioService.criar(request);
+        return ResponseEntity.status(HttpStatus.CREATED).body(usuario);
     }
 
     @PreAuthorize("hasRole('ADMIN')")

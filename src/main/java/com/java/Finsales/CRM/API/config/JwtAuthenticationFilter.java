@@ -2,6 +2,7 @@ package com.java.Finsales.CRM.API.config;
 
 import com.java.Finsales.CRM.API.domain.model.Usuario;
 import com.java.Finsales.CRM.API.domain.repository.UsuarioRepository;
+import com.java.Finsales.CRM.API.domain.utils.enums.StatusUsuario;
 import com.java.Finsales.CRM.API.service.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -11,6 +12,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -21,56 +23,48 @@ import java.util.List;
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private final JwtService jwtService;
-    private final UsuarioRepository usuarioRepository;
+    private final CustomUserDetailsService userDetailsService;
 
     public JwtAuthenticationFilter(JwtService jwtService,
-                                   UsuarioRepository usuarioRepository) {
+                                   CustomUserDetailsService userDetailsService) {
         this.jwtService = jwtService;
-        this.usuarioRepository = usuarioRepository;
+        this.userDetailsService = userDetailsService;
     }
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+    protected void doFilterInternal(HttpServletRequest request,
+                                    HttpServletResponse response,
+                                    FilterChain filterChain)
             throws ServletException, IOException {
 
-        // Pega o header Authorization
         String authHeader = request.getHeader("Authorization");
 
-        // Se não tiver Bearer, apenas continua o fluxo
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             filterChain.doFilter(request, response);
             return;
         }
 
-        // Remove o "Bearer "
         String token = authHeader.substring(7);
+        String email = jwtService.extrairEmail(token);
 
-        try {
+        if (email != null &&
+                SecurityContextHolder.getContext().getAuthentication() == null) {
 
-            String email = jwtService.extrairEmail(token);
+            UserDetails userDetails =
+                    userDetailsService.loadUserByUsername(email);
 
-            // Só autentica se ainda não estiver autenticado
-            if (email != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-                Usuario usuario = usuarioRepository.findByEmail(email).orElse(null);
+            if (jwtService.tokenValido(token)) {
 
-                // Verifica se usuário existe e token é válido
-                if (usuario != null && jwtService.tokenValido(token)) {
+                UsernamePasswordAuthenticationToken authentication =
+                        new UsernamePasswordAuthenticationToken(
+                                userDetails,
+                                null,
+                                userDetails.getAuthorities()
+                        );
 
-                    // Converte perfil em ROLE
-                    List<GrantedAuthority> authorities =
-                            List.of(new SimpleGrantedAuthority(usuario.getPerfil().name()));
-
-                    // Cria objeto de autenticação
-                    UsernamePasswordAuthenticationToken authentication =
-                            new UsernamePasswordAuthenticationToken(usuario, null, authorities);
-
-                    // Seta no contexto do Spring
-                    SecurityContextHolder.getContext().setAuthentication(authentication);
-                }
+                SecurityContextHolder.getContext()
+                        .setAuthentication(authentication);
             }
-
-        } catch (Exception e) {
-            // Se token for inválido, simplesmente não autentica
         }
 
         filterChain.doFilter(request, response);
