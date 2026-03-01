@@ -43,44 +43,83 @@ O sistema representa um CRM onde podemos gerenciar:
 
 O domínio pode evoluir conforme o aprendizado avança.
 
----
-## Perfis de Usuário
+## Perfis de Acesso
 
-O controle de acesso é baseado em perfil.
-
-### Perfis disponíveis:
-
-**ADMIN**
+### ADMIN
+Pode:
+- Criar usuários
+- Criar produtos
+- Gerenciar leads
+- Gerenciar clientes
+- Gerenciar oportunidades
 - Listar usuários
-- Inativar usuários
-- Acesso completo aos recursos administrativos
 
-**VENDEDOR**
-- Acesso limitado
-- Visualização e atualização apenas do que for permitido
+### VENDEDOR
+Pode:
+- Criar e atualizar leads
+- Converter leads
+- Criar clientes
+- Criar e atualizar oportunidades
+- Listar oportunidades
 
-As permissões são configuradas no `SecurityConfiguration`.
-
----
-
-##  Status de Usuário
-
-O sistema controla o status:
-
-- ATIVO
-- INATIVO
-
-Usuários INATIVOS não devem conseguir autenticar.
+Não pode:
+- Criar usuários
+- Criar produtos
+- Listar usuários
+- Atualizar clientes (conforme testes atuais)
 
 ---
 
-##  Regras de Negócio Implementadas
+## Regras de Negócio
 
-- Usuário padrão é criado como VENDEDOR (quando não informado)
-- Apenas ADMIN pode listar usuários
-- Token expira em 1 hora
-- Senhas devem ser criptografadas com BCrypt
-- API é totalmente stateless
+### Usuários
+- Email deve ser único
+- Perfil deve ser ADMIN ou VENDEDOR
+- Usuário pode ser ATIVO ou INATIVO
+- Apenas ADMIN pode listar e inativar usuários
 
+### Leads
+- Email do lead deve ser único
+- Status possíveis:
+  - NOVO
+  - QUALIFICADO
+  - CONTRATADO
+  - DESCARTADO
+  - CONVERTIDO
+- Lead DESCARTADO ou CONVERTIDO não pode ser alterado
+- Conversão gera cliente automaticamente
 
+### Clientes
+- Documento deve ser único
+- Tipo: PF ou PJ
+- Estado: ATIVO ou INATIVO
+- Atualização exige cliente existente
+
+### Produtos
+- Apenas ADMIN pode criar
+- Nome e dados obrigatórios
+
+### Oportunidades
+- Deve estar vinculada a cliente e produto existentes
+- Status possíveis:
+  - ABERTA
+  - NEGOCIANDO
+  - GANHA
+  - PERDIDA
+
+---
+
+## Autenticação
+
+### Login
+POST /auth/login
+
+Body:
+```json
+{
+  "email": "admin@crm.com",
+  "senha": "123456"
+}
+``
+```
 Autora - Nicole Silva
