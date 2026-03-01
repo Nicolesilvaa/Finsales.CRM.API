@@ -15,7 +15,11 @@ params:query {
 }
 
 headers {
-  Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2FvQGNybS5jb20iLCJpZCI6MSwicGVyZmlsIjoiVkVOREVET1IiLCJpYXQiOjE3NzIxNTc2MjQsImV4cCI6MTc3MjE2MTIyNH0.-o1S2B6XYiJQh0AHjCHHmDcJMbaBfYA84QAtQYXMJYw
+  Authorization: Bearer {{token}}
+}
+
+vars:pre-request {
+  token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuaWNvbGVAZW1haWwuY29tIiwiaWQiOjIsInBlcmZpbCI6IlZFTkRFRE9SIiwiaWF0IjoxNzcyMzI0NzM0LCJleHAiOjE3NzIzMjgzMzR9.VW4d2jD_vyCS-pghu8Z9XbRG1h6kXBZS3I1_f3JHpLo
 }
 
 settings {

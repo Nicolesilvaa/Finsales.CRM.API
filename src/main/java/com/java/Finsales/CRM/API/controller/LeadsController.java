@@ -47,7 +47,6 @@ public class LeadsController {
         return ResponseEntity.ok(leadService.buscarPorId(id));
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN','VENDEDOR')")
     @PatchMapping("/{id}/status")
     public  ResponseEntity<Void> atualizarStatus(@PathVariable Long id, @Valid @RequestBody UpdateStatusLeadRequest request){
         leadService.atualizarStatus( id, request.getStatus());

@@ -12,16 +12,20 @@ post {
 
 headers {
   Content-Type: application/json
+  Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJpYUBnbWFpbC5jb20iLCJpZCI6MTAsInBlcmZpbCI6IlZFTkRFRE9SIiwiaWF0IjoxNzcyMzI3NDkyLCJleHAiOjE3NzIzMzEwOTJ9.bQjRt1bSRTnQBFGJNmIS1wsQnlsIbLZN_uPvp1UZ-3w
 }
 
 body:json {
   {
-    "nome": "Nicole",
-    "email": "nicole@email.com",
-    "telefone": "119999999",
-    "origemLead": "SITE"
+    "nome": "Maria Oleira",
+    "email": "mia@email.com",
+    "telefone": "71888888888",
+    "origemLead": "INSTAGRAM"
   }
-  
+}
+
+vars:pre-request {
+  token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuaWNvbGVAZW1haWwuY29tIiwiaWQiOjIsInBlcmZpbCI6IlZFTkRFRE9SIiwiaWF0IjoxNzcyMzI0MzgwLCJleHAiOjE3NzIzMjc5ODB9.dsrZnF7GxxO7qoA_7wjyq9HuZ-JJPq0K_SbgZujkdtY
 }
 
 settings {
