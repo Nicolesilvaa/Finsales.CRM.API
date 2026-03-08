@@ -4,8 +4,6 @@ Status: Em andamento
 
 API REST desenvolvida em Java com Spring Boot simulando um sistema de CRM (Customer Relationship Management).
 
-O objetivo do projeto é treinar  conceitos fundamentais de backend, aplicando boas práticas de arquitetura, segurança e organização de código.
-
 ---
 
 ## Objetivo do Projeto
@@ -14,7 +12,6 @@ O objetivo do projeto é treinar  conceitos fundamentais de backend, aplicando b
 - Arquitetura em camadas (Controller, Service, Repository)
 - Autenticação com JWT
 - Autorização baseada em perfil (Role-based access control)
-- Spring Security (stateless)
 - Modelagem de domínio
 
 A proposta é simular um sistema real de CRM interno para equipe de vendas.
